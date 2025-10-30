@@ -254,9 +254,7 @@
     "cross-env": "^10.0.0",
     "ovsx": "^0.10.0",
     "tsdown": "^0.15.12",
-    "typescript": "catalog:"
-  },
-  "dependencies": {
+    "typescript": "catalog:",
     "vscode-languageclient": "^9.0.1"
   },
   "vsce": {

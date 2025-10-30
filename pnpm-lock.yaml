@@ -95,10 +95,6 @@ importers:
         version: 4.0.3(@types/node@24.9.1)(@vitest/browser-playwright@4.0.3)(jiti@2.6.1)
 
   editors/vscode:
-    dependencies:
-      vscode-languageclient:
-        specifier: ^9.0.1
-        version: 9.0.1
     devDependencies:
       '@types/mocha':
         specifier: ^10.0.9
@@ -130,6 +126,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+      vscode-languageclient:
+        specifier: ^9.0.1
+        version: 9.0.1
 
   napi/minify:
     devDependencies:
