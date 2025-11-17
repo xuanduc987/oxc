@@ -29,6 +29,11 @@ teardown(async () => {
 
 suite('commands', () => {
   testSingleFolderMode('listed commands', async () => {
+    // Skip tests if linter tests are disabled
+    if (process.env.SKIP_LINTER_TEST === 'true') {
+      return;
+    }
+
     const oxcCommands = (await commands.getCommands(true)).filter(x => x.startsWith('oxc.'));
 
     deepStrictEqual([
@@ -67,6 +72,11 @@ suite('commands', () => {
   });
 
   test('oxc.fixAll', async () => {
+    // Skip tests if linter tests are disabled
+    if (process.env.SKIP_LINTER_TEST === 'true') {
+      return;
+    }
+
     const edit = new WorkspaceEdit();
     edit.createFile(fileUri, {
       contents: Buffer.from('/* 😊 */debugger;'),
