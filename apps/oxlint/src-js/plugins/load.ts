@@ -127,15 +127,16 @@ export async function loadPlugin(path: string, packageName: string | null): Prom
  * @param path - Absolute path of plugin file
  * @param packageName - Optional package name from `package.json` (fallback if `plugin.meta.name` is not defined)
  * @returns - Plugin details
- * @throws {Error} If plugin has already been registered
  * @throws {Error} If plugin has no name
  * @throws {TypeError} If one of plugin's rules is malformed, or its `createOnce` method returns invalid visitor
  * @throws {TypeError} if `plugin.meta.name` is not a string
  * @throws {*} If plugin throws an error during import
  */
 async function loadPluginImpl(path: string, packageName: string | null): Promise<PluginDetails> {
+  // If plugin was already registered, unregister it first.
+  // This allows re-loading the plugin when the linter is restarted in `--lsp` mode.
   if (registeredPluginPaths.has(path)) {
-    throw new Error('This plugin has already been registered. This is a bug in Oxlint. Please report it.');
+    registeredPluginPaths.delete(path);
   }
 
   const { default: plugin } = (await import(pathToFileURL(path).href)) as { default: Plugin };
