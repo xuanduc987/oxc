@@ -274,6 +274,11 @@ jobs:
       - run: cargo lint -- -D warnings
       - run: cargo lint --profile dev-no-debug-assertions -- -D warnings
       - run: RUSTDOCFLAGS='-D warnings' cargo doc --no-deps --document-private-items
+      # Need to build Oxlint before linting it, because the tests reference the `.d.ts` file produced by the build.
+      # Type-aware rules rely on it.
+      - name: Build Oxlint
+        working-directory: apps/oxlint
+        run: pnpm run build-test
       - run: node --run lint
 
   conformance:
