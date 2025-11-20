@@ -118,7 +118,7 @@
           ],
           "scope": "resource",
           "default": null,
-          "markdownDescription": "Path to TypeScript configuration. If your `tsconfig.json` is not at the root, alias paths will not be resolve correctly for the `import` plugin."
+          "markdownDescription": "Path to the project's TypeScript config file. If your `tsconfig.json` is in the root directory of your project, this setting is unnecessary.\n\nIf your `tsconfig.json` is not at the root, you will need this set for the `import` plugin rules to resolve imports correctly."
         },
         "oxc.unusedDisableDirectives": {
           "type": "string",
